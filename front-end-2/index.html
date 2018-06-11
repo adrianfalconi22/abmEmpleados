@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html ng-app = "prueba">
+  <head>
+    <meta charset="UTF-8">      
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="micss/estilo.css">
+  </head>
+  <body ng-controller="pruebaController">
+      <nav id="barra" class="navbar navbar-default">
+         <div class="container-fluid">
+          <div >
+            <div class="navbar-header">
+                 <a class="navbar-brand" href="index.html">abm</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-0" >
+             <!-- <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inicio <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                   <li><a href="https://www.google.com/">salir</a></li>
+                   <li role="separator" class="divider"></li>
+                  </ul>
+                </li>
+              </ul>-->
+            </div><!-- /.navbar-collapse -->
+          </div>
+        </div><!-- /.container-fluid -->
+      </nav>
+
+      
+   <div class="accordion" id="accordionExample">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 id="botonAgregar" class="mb-0">
+            <button class="btn btn-primary" type="button" data-toggle="collapse"  data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+             agregar
+            </button>
+          </h5>
+        </div>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingone" data-parent="#accordionExample">
+            <div class="card-body">
+                <form name="miFormulario" novalidate>
+                  <div class="form-group row">
+                   <label for="validarNombre" class="col-sm-4 col-form-label" >Nombre</label>
+                    <div class="col-sm-10">
+                      <input  name="crearNombre" type="text" class="form-control" id="validarNombre" placeholder="nombre" ng-model="crear.nombre" required>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label  for="validarEdad" class="col-sm-4 col-form-label">Edad</label>
+                    <div class="col-sm-10">
+                      <input type="number" name="crearEdad" class="form-control"  id="validarEdad" placeholder="edad" ng-model="crear.edad" required min="18" max="65"required>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                      <label for="validarSueldo" class="col-sm-4 col-form-label">Sueldo</label>
+                      <div class="col-sm-10">
+                        <input type="number" name="crearEdad" class="form-control"  id="validarSueldo" placeholder="sueldo" ng-model="crear.sueldo" required min="9500" max="99999999999" required>
+                      </div>
+                  </div>
+                    <button ng-disabled="miFormulario.$invalid" class="btn btn-primary"  id="botonAgregar" type="submit" ng-click="addEmpleado()">ingresar empleado</button>
+                </form>
+            </div>
+        </div>
+      </div>
+              <div id="centrar" class="table-responsive" >
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID <input id="inputFilter" type="text" class="form-control"  placeholder="id"  ng-model=buscar.id size="1"></th>
+                        <th scope="col">Nombre <input id="inputFilter" type="text" class="form-control"  placeholder="nombre"  ng-model=buscar.nombre size="2"></th>
+                        <th scope="col">Edad <input id="inputFilter" type="text" class="form-control"  placeholder="edad"  ng-model=buscar.edad size="2"></th>
+                        <th scope="col">Sueldo <input id="inputFilter" type="text" class="form-control"  placeholder="sueldo"  ng-model=buscar.sueldo size="2"></th>
+                        <th scope="col">Accion</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="empleado in post2 = (post |filter:{id :buscar.id,nombre: buscar.nombre ,edad: buscar.edad, sueldo: buscar.sueldo}) ">
+                          <td>{{ empleado.id }}</td>
+                          <td>{{ empleado.nombre}}</td>
+                          <td>{{ empleado.edad }}</td>
+                          <td>{{ empleado.sueldo}}</td>
+                          <td>  <button type="button"  class="btn btn-primary" ng-click="setId(empleado.id)" data-toggle="modal" data-target="#myModal4" >editar</button>
+                                <button type="button"  class="btn btn-primary" ng-click="setId(empleado.id)" data-toggle="modal" data-target="#myModal5" >eliminar</button>
+                          </td>
+                       </tr>
+                    </tbody>
+                </table>
+              </div> 
+      </div>
+    
+ 
+     
+   <!-- Modal4 -->
+   <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">editar</h4>
+        </div>
+        <div class="modal-body">
+            <form name="miFormularioEditar" novalidate>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">id</label>
+                    <div class="col-sm-10">
+                      <input id="input" type="text" class="form-control"  placeholder="id" ng-model=buscar.id>
+
+                    </div>
+                  </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">Nombre</label>
+                  <div class="col-sm-10">
+                    <input  type="text" class="form-control"  placeholder="nombre" ng-model=editar.nombre required>
+            
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label  class="col-sm-2 col-form-label">Edad</label>
+                  <div class="col-sm-10">
+                    <input  type="number" min="18" max="65" class="form-control" placeholder="edad" ng-model="editar.edad" required>
+                  </div>
+                </div>
+                <div class="form-group row">
+                    <label  class="col-sm-2 col-form-label">Sueldo</label>
+                    <div class="col-sm-10">
+                      <input type="number" min="9500" max="9999999999999"class="form-control" placeholder="sueldo" ng-model="editar.sueldo" required>
+                    </div>
+                  </div>
+              </form> 
+      <br>
+      
+      <br>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">volver</button>
+          
+          <button  ng-disabled="miFormularioEditar.$invalid" type="submit"  class="btn btn-primary" ng-click="editarEmpleado()">editar</button>
+        </div>
+      </div>
+    </div>
+  
+   </div>
+   <!-- Modal5 -->
+   <div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">eliminar</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">Va a eliminar el empleado </label>
+                <div class="col-sm-10">
+                  <input id="input" type="text" class="form-control"  placeholder="id" ng-model=buscar.id>
+                </div>
+            </div>       
+        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">volver</button>
+          <button  type="button" class="btn btn-primary" data-dismiss="modal" ng-click="eliminarEmpleado()"> eliminar</button>
+          <br>
+          <br>
+        </div>
+      </div>
+    </div>
+   </div>
+   </div>
+   <br>
+
+
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+   <script src="mijs/controller.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+ </body>
+</html>

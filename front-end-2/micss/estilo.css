@@ -1,0 +1,71 @@
+
+body{
+    background-color: white;
+    font-size: 15px;
+}
+
+
+#botonAgregar{
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+#barra{
+     background-color: rgba(127, 123, 187, 0.329);
+}
+
+.navbar-default .navbar-nav>li>a, .navbar-default .navbar-brand{
+    color:  white;
+}
+#margenBoton{
+    margin-bottom:2%
+}
+ 
+  #fbs-example-navbar-collapse-0{
+      background-color: white;
+  }
+
+input.ng-invalid {
+    background-color:white;
+}
+input.ng-valid {
+    background-color:lightgreen;
+}
+
+#input{
+    background-color:white;
+}
+#inputFilter{
+    background-color:white;
+    width:150px;
+    height:20px;
+}
+#centrar {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#centrar td, #centar th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#centrar tr:nth-child(even){background-color: #f2f2f2;}
+
+#centrar tr:hover {background-color: #ddd;}
+
+#centrar th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: rgb(76, 135, 175);
+    color: white;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
